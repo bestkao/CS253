@@ -1,0 +1,14 @@
+James Kao's Projects for Udacity's CS253: Web Development Course
+
+## Problem Set 1
+This is a basic "Hello, Udacity!" page.
+View this site at http://jameskaoapp.appspot.com
+
+## Problem Set 2a
+This is a web app that retrieves text and POSTs back to the form with the text encoded with ROT13.
+View this project at http://jameskaoapp.appspot.com/unit2/rot13
+
+## Problem Set 2b
+This is a signup page that ensures valid username, password, verify password, and email fields are entered.
+View this project at http://jameskaoapp.appspot.com/unit2/signup
+
