@@ -25,10 +25,17 @@ def valid_month(month):
         if cap_month in months:
             return cap_month
 
+<<<<<<< HEAD
 # print valid_month("january") => "January"    
 # print valid_month("January") => "January"
 # print valid_month("foo") => None
 # print valid_month("") => None
+=======
+# valid_month("january") => "January"    
+# valid_month("January") => "January"
+# valid_month("foo") => None
+# valid_month("") => None
+>>>>>>> 1d8cc4998f8258f132b3891cfa93c62f5ff07af7
 
 
 
@@ -72,6 +79,7 @@ def valid_year(year):
             return year
 
 
+<<<<<<< HEAD
 # print valid_year('0') => None    
 # print valid_year('-11') => None
 # print valid_year('1950') => 1950
@@ -79,6 +87,15 @@ def valid_year(year):
 
 
 """
+=======
+# valid_year('0') => None    
+# valid_year('-11') => None
+# valid_year('1950') => 1950
+# valid_year('2000') => 2000
+
+
+'''
+>>>>>>> 1d8cc4998f8258f132b3891cfa93c62f5ff07af7
 # Use escape_html() to replace:
 # > with &gt;
 # < with &lt;
@@ -97,7 +114,11 @@ def escape_html(s):
 
 # escape_html("<b>html</b>")
 # escape_html('"hello, & = &amp;"')
+<<<<<<< HEAD
 """
+=======
+'''
+>>>>>>> 1d8cc4998f8258f132b3891cfa93c62f5ff07af7
 
 
 
