@@ -1,5 +1,5 @@
 import webapp2
-import cgi
+from escape_html import escape_html
 
 """
 In order to be graded correctly for this homework, there are a
@@ -19,36 +19,30 @@ then the grading script would not work. Don't forget to escape
 your output!
 """
 
-form="""
+rot13_form="""
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ROT 13 Encryption by James Kao</title>
-    </head>
-    <body>
-        <h2>Enter some text to ROT13:</h2>
-        <form method="post">
-            <textarea name="text" style="height: 100px; width: 400px">%(text)s</textarea>
-            <br>
-            <input type="submit">
-        </form>
-    </body>
+  <head>
+    <title>Unit 2 Rot 13</title>
+  </head>
+  <body>
+    <h2>Enter some text to ROT13:</h2>
+    <form method="post">
+      <textarea name="text"
+                style="height: 100px; width: 400px;">%(text)s</textarea>
+      <br>
+      <input type="submit">
+    </form>
+  </body>
 </html>
 """
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.out.write("Hello, Udacity!")
-
 class Rot13Handler(webapp2.RequestHandler):
-    def escape_html(self, text=""):
-        return cgi.escape(text, quote = True)
-
     def rot13(self, text=""):
         return text.encode('rot13')
 
     def write_form(self, text=""):
-        self.response.write(form % {"text": text})
+        self.response.write(rot13_form % {"text": text})
 
     def get(self):
         self.write_form()
@@ -56,9 +50,4 @@ class Rot13Handler(webapp2.RequestHandler):
     def post(self):
         user_text = str(self.request.get("text"))
         encrypted_text = self.rot13(user_text)
-        escaped_text = self.escape_html(encrypted_text)
-        self.write_form(escaped_text)
-
-application = webapp2.WSGIApplication([("/", MainPage),
-                                        ("/unit2/rot13", Rot13Handler)],
-                                        debug=True)
+        self.write_form(escape_html(encrypted_text))

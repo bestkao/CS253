@@ -71,37 +71,7 @@ def valid_year(year):
         if year >= 1900 and year <= 2020:
             return year
 
-
 # print valid_year('0') => None    
 # print valid_year('-11') => None
 # print valid_year('1950') => 1950
 # print valid_year('2000') => 2000
-
-
-"""
-# Use escape_html() to replace:
-# > with &gt;
-# < with &lt;
-# " with &quot;
-# & with &amp;
-#
-# return the escaped string
-
-def escape_html(s):
-    for(i, o) in (("&", "&amp;"),
-                  (">", "&gt;"),
-                  ("<", "&lt;"),
-                  ('"', "&quot;")):
-        s = s.replace(i, o)
-    return s
-
-# escape_html("<b>html</b>")
-# escape_html('"hello, & = &amp;"')
-"""
-
-
-
-# Using the built-in python function cgi
-import cgi
-def escape_html(s):
-    return cgi.escape(s, quote = True)

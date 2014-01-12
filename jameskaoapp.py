@@ -1,5 +1,7 @@
 import webapp2
-import cgi
+from main import *
+from birthday import *
+from rot13 import *
 from signupValidation import *
 
 '''
@@ -32,23 +34,6 @@ Example code for validating a username is as follows:
 More information on using regular expressions in Python can be found here:
     http://docs.python.org/library/re.html
 '''
-
-rot13_form="""
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>ROT 13 Encryption by James Kao</title>
-    </head>
-    <body>
-        <h2>Enter some text to ROT13:</h2>
-        <form method="post">
-            <textarea name="text" style="height: 100px; width: 400px">%(text)s</textarea>
-            <br>
-            <input type="submit">
-        </form>
-    </body>
-</html>
-"""
 
 signup_form="""
 <!DOCTYPE html>
@@ -123,28 +108,17 @@ signup_form="""
 </html>
 """
 
-def escape_html(text=""):
-        return cgi.escape(text, quote = True)
-
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.out.write("Hello, Udacity!")
-
-class Rot13Handler(webapp2.RequestHandler):
-    def rot13(self, text=""):
-        return text.encode('rot13')
-
-    def write_form(self, text=""):
-        self.response.write(rot13_form % {"text": text})
-
-    def get(self):
-        self.write_form()
-
-    def post(self):
-        user_text = str(self.request.get("text"))
-        encrypted_text = self.rot13(user_text)
-        self.write_form(escape_html(encrypted_text))
-
+welcome_form="""
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit 2 Signup</title>
+  </head>
+  <body>
+    <h2>Welcome, %s!</h2>
+  </body>
+</html>
+"""
 class SignupHandler(webapp2.RequestHandler):
     def write_form(self, username_error="", password_error="", verify_error="",
                 email_error="", username="", password="", verify="", email=""):
@@ -181,10 +155,12 @@ class SignupHandler(webapp2.RequestHandler):
 
 class WelcomeHandler(webapp2.RequestHandler):
     def get(self):
-        username = self.request.get("username")
-        self.response.out.write(username)
+        user_username = self.request.get("username")
+        self.response.write(welcome_form %user_username)
 
 application = webapp2.WSGIApplication([("/", MainPage),
+                                       ("/unit2/birthday", BirthdayHandler),
+                                       ("/unit2/thanks", ThanksHandler),
                                        ("/unit2/rot13", Rot13Handler),
                                        ("/unit2/signup", SignupHandler),
                                        ("/unit2/welcome", WelcomeHandler)],

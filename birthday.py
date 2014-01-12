@@ -1,7 +1,13 @@
 import webapp2
-from dateValidation import *
+from escape_html import escape_html
+from date import *
 
-form="""
+"""
+Lesson 2:
+This is a web app that checks for a valid birthday and redirects to a thanks page if valid.
+"""
+
+birthday_form="""
 <form method="post">
     What is your birthday?
     <br>
@@ -21,12 +27,12 @@ form="""
 </form>
 """
 
-class MainPage(webapp2.RequestHandler):
+class BirthdayHandler(webapp2.RequestHandler):
     def write_form(self, error="", month="", day="", year=""):
-        self.response.write(form % {"error": error,
-                                    "month": escape_html(month),
-                                    "day": escape_html(day),
-                                    "year": escape_html(year)})
+        self.response.write(birthday_form % {"error": error,
+                                             "month": escape_html(month),
+                                             "day": escape_html(day),
+                                             "year": escape_html(year)})
 
     def get(self):
         self.write_form()
@@ -44,12 +50,8 @@ class MainPage(webapp2.RequestHandler):
             self.write_form("That doesn't look valid to me, friend.",
                             user_month, user_day, user_year)
         else:
-            self.redirect("/thanks")
+            self.redirect("/unit2/thanks")
 
 class ThanksHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write("Thanks! That's a totally valid date!")
-
-application = webapp2.WSGIApplication([("/", MainPage),
-                                      ("/thanks", ThanksHandler)],
-                                      debug=True)
