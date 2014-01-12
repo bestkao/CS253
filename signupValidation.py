@@ -1,21 +1,13 @@
 import re
 
+USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
-    return username
-    #USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-    #return USER_RE.match(username)
+    return username and USER_RE.match(username)
 
+PASS_RE = re.compile(r"^.{3,20}$")
 def valid_password(password):
-	return password
-	#PASSWORD_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-    #return PASSWORD_RE.match(password)
+    return password and PASS_RE.match(password)
 
-def valid_verify(verify):
-	return verify
-	#VERIFY_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-    #return VERIFY_RE.match(verify)
-
+EMAIL_RE  = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
 def valid_email(email):
-	return email
-	#EMAIL_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-    #return EMAIL_RE.match(email)
+    return not email or EMAIL_RE.match(email)

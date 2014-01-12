@@ -7,6 +7,6 @@ Homework 1
   - Submit the URL
 """
 
-class MainPage(webapp2.RequestHandler):
+class Main(webapp2.RequestHandler):
     def get(self):
         self.response.out.write("Hello, Udacity!")

@@ -27,7 +27,7 @@ birthday_form="""
 </form>
 """
 
-class BirthdayHandler(webapp2.RequestHandler):
+class Birthday(webapp2.RequestHandler):
     def write_form(self, error="", month="", day="", year=""):
         self.response.write(birthday_form % {"error": error,
                                              "month": escape_html(month),
@@ -52,6 +52,6 @@ class BirthdayHandler(webapp2.RequestHandler):
         else:
             self.redirect("/unit2/thanks")
 
-class ThanksHandler(webapp2.RequestHandler):
+class Thanks(webapp2.RequestHandler):
     def get(self):
         self.response.write("Thanks! That's a totally valid date!")

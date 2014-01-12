@@ -37,7 +37,7 @@ rot13_form="""
 </html>
 """
 
-class Rot13Handler(webapp2.RequestHandler):
+class Rot13(webapp2.RequestHandler):
     def rot13(self, text=""):
         return text.encode('rot13')
 
