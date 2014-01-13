@@ -1,12 +1,17 @@
+import os
+import jinja2
 import webapp2
 
-"""
-Homework 1
-  - Install Google App Engine
-  - Put online a basic app that says "Hello, Udacity!"
-  - Submit the URL
-"""
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+                               autoescape = True)
+
+# A basic web app that says "Hello, Udacity!"
 
 class Main(webapp2.RequestHandler):
     def get(self):
-        self.response.out.write("Hello, Udacity!")
+    	t_values = {
+    		"text": "Hello, Udacity!"
+    	}
+    	t = jinja_env.get_template('index.html')
+        self.response.write(t.render(t_values))

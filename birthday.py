@@ -1,38 +1,27 @@
+import os
+import jinja2
 import webapp2
-from escape_html import escape_html
+import cgi
 from date import *
 
-"""
-Lesson 2:
-This is a web app that checks for a valid birthday and redirects to a thanks page if valid.
-"""
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+                               autoescape = False)
 
-birthday_form="""
-<form method="post">
-    What is your birthday?
-    <br>
-    <label>Month 
-        <input type="text" name="month" value=%(month)s>
-    </label>
-    <label>Day 
-        <input type="text" name="day" value=%(day)s>
-    </label>
-    <label>Year 
-        <input type="text" name="year" value=%(year)s>
-    </label>
-    <div style="color: red">%(error)s</div>
-    <br>
-    <br>
-    <input type="submit">
-</form>
+"""
+This is a web app that checks for a valid birthday and redirects to a thanks page if valid.
 """
 
 class Birthday(webapp2.RequestHandler):
     def write_form(self, error="", month="", day="", year=""):
-        self.response.write(birthday_form % {"error": error,
-                                             "month": escape_html(month),
-                                             "day": escape_html(day),
-                                             "year": escape_html(year)})
+        t_values = {
+            "error": error,
+            "month": cgi.escape(month, quote = True),
+            "day": cgi.escape(day, quote = True),
+            "year": cgi.escape(year, quote = True)
+        }
+        t = jinja_env.get_template('birthday.html')
+        self.response.write(t.render(t_values))
 
     def get(self):
         self.write_form()

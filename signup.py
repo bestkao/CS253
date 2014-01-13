@@ -1,6 +1,12 @@
+import os
+import jinja2
 import webapp2
-from escape_html import escape_html
+import cgi
 from signupValidation import *
+
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+                               autoescape = False)
 
 '''
 In order to be graded correctly for this homework, there are a few things to keep in mind.
@@ -32,100 +38,19 @@ More information on using regular expressions in Python can be found here:
     http://docs.python.org/library/re.html
 '''
 
-signup_form="""
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <title>Sign Up</title>
-    <style type="text/css">
-      .label {text-align: right}
-      .error {color: red}
-    </style>
-
-  </head>
-
-  <body>
-    <h2>Signup</h2>
-    <form method="post">
-      <table>
-        <tr>
-          <td class="label">
-            Username
-          </td>
-          <td>
-            <input type="text" name="username" value=%(username)s>
-          </td>
-          <td class="error">
-            %(username_error)s
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Password
-          </td>
-          <td>
-            <input type="password" name="password" value="">
-          </td>
-          <td class="error">
-            %(password_error)s
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Verify Password
-          </td>
-          <td>
-            <input type="password" name="verify" value="">
-          </td>
-          <td class="error">
-            %(verify_error)s
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Email (optional)
-          </td>
-          <td>
-            <input type="text" name="email" value=%(email)s>
-          </td>
-          <td class="error">
-            %(email_error)s
-          </td>
-        </tr>
-      </table>
-
-      <input type="submit">
-    </form>
-  </body>
-
-</html>
-"""
-
-welcome_form="""
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Unit 2 Signup</title>
-  </head>
-  <body>
-    <h2>Welcome, %s!</h2>
-  </body>
-</html>
-"""
-
 class Signup(webapp2.RequestHandler):
     def write_form(self, username="", email="", username_error="",
                    password_error="", verify_error="", email_error=""):
-        self.response.out.write(signup_form % {"username": escape_html(username),
-                                               "email": escape_html(email),
-                                               "username_error": escape_html(username_error),
-                                               "password_error": escape_html(password_error),
-                                               "verify_error": escape_html(verify_error),
-                                               "email_error": escape_html(email_error)})
+        t_values = {
+            "username": cgi.escape(username),
+            "email": cgi.escape(email),
+            "username_error": username_error,
+            "password_error": password_error,
+            "verify_error": verify_error,
+            "email_error": email_error
+        }
+        t = jinja_env.get_template('signup.html')
+        self.response.write(t.render(t_values))
 
     def get(self):
         self.write_form()
@@ -167,6 +92,10 @@ class Welcome(webapp2.RequestHandler):
     def get(self):
         username = self.request.get("username")
         if valid_username(username):
-            self.response.out.write(welcome_form % username)
+            t_values = {
+                "username": cgi.escape(username)
+            }
+            t = jinja_env.get_template('welcome.html')
+            self.response.write(t.render(t_values))
         else:
             self.redirect("/unit2/signup")

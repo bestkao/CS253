@@ -1,10 +1,10 @@
-James Kao's Projects for Udacity's CS253: Web Development Course
+James Kao's collection of web apps for Udacity's CS253: Web Development Course
 
 ## Problem Set 1
 This is a basic web app that says "Hello, Udacity!"
 View this app at http://www.thekao.com
 
-## Lesson 2
+## Unit 2
 This is a web app that checks for a valid birthday and redirects to a thanks page if valid.
 View this app at http://www.thekao.com/unit2/birthday
 
