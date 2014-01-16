@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+    <title>CS 253 Blog</title>
+  </head>
+
+  <body>
+    <div class="main-title">CS 253 Blog</div>
+    <h2>new post</h2>
+
+    <form method="post">
+      <label>
+        <div>subject</div>
+        <input type="text" name="subject" value="{{subject}}">
+      </label>
+
+      <label>
+        <div>blog</div>
+        <textarea name="content">{{content}}</textarea>
+      </label>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+
+    {% for p in posts %}
+      <div class="post">
+        <div class="post-subject">{{p.subject}}</div>
+        <pre class="post-blog">{{p.content}}</pre>
+      </div>
+    {% endfor %}
+
+  </body>
+
+</html>
