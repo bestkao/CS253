@@ -1,7 +1,7 @@
 from handler import *
-from blog import Post
+from post import Post
 
-# This is a form to submit new entries and direct them to a permalink after submission
+# This is a form to submit new posts that redirects to a permalink after submission
 
 class NewPost(Handler):
     def render_newpost(self, subject = "", content = "", error = ""):

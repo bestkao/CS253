@@ -1,10 +1,11 @@
-from main import *
+from main import Main
 from birthday import *
-from rot13 import *
+from rot13 import Rot13
 from signup import *
 from asciichan import *
-from blog import *
-from newpost import *
+from blog import Blog
+from newpost import NewPost
+from permalink import Permalink
 
 app = webapp2.WSGIApplication([
 	("/", Main),

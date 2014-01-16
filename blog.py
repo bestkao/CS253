@@ -1,4 +1,5 @@
 from handler import *
+from post import Post
 
 '''
 Build a blog
@@ -41,12 +42,6 @@ To look up an object by id, you can use the get_by_id() function document here:
 Hope this helps!
 '''
 
-class Post(db.Model):
-    subject = db.StringProperty(required = True)
-    content = db.TextProperty(required = True, indexed = False)
-    created = db.DateTimeProperty(auto_now_add = True)
-    #last_modified = db.DateTimeProperty(auto_now = True)
-
 class Blog(Handler):
     def render_blog(self, subject = "", content = "", created = ""):
         # Google Datastore Query:
@@ -58,8 +53,3 @@ class Blog(Handler):
 
     def get(self):
         self.render_blog()
-
-class Permalink(Blog):
-    def get(self, post_id):
-        p = Post.get_by_id(int(post_id))
-        self.render("blog.html", posts = [p])
