@@ -1,11 +1,4 @@
-import os
-import jinja2
-import webapp2
-import cgi
-
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-                               autoescape = False)
+from handler import *
 
 """
 In order to be graded correctly for this homework, there are a
@@ -25,21 +18,17 @@ then the grading script would not work. Don't forget to escape
 your output!
 """
 
-class Rot13(webapp2.RequestHandler):
+class Rot13(Handler):
     def rot13(self, text=""):
         return text.encode('rot13')
 
-    def write_form(self, text=""):
-        t_values = {
-            "text": cgi.escape(text)
-        }
-        t = jinja_env.get_template('rot13.html')
-        self.response.write(t.render(t_values))
+    def render_rot13(self, text = ""):
+        self.render("rot13.html", text = text)
 
     def get(self):
-        self.write_form()
+        self.render_rot13()
 
     def post(self):
         user_text = str(self.request.get("text"))
         encrypted_text = self.rot13(user_text)
-        self.write_form(encrypted_text)
+        self.render_rot13(encrypted_text)

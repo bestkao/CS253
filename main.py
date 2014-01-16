@@ -1,17 +1,7 @@
-import os
-import jinja2
-import webapp2
+from handler import *
 
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-                               autoescape = True)
+# This is a basic web app that says "Hello, World!"
 
-# A basic web app that says "Hello, Udacity!"
-
-class Main(webapp2.RequestHandler):
+class Main(Handler):
     def get(self):
-    	t_values = {
-    		"text": "Hello, Udacity!"
-    	}
-    	t = jinja_env.get_template('index.html')
-        self.response.write(t.render(t_values))
+        self.render("index.html", text = "Hello, World!")

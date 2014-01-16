@@ -1,12 +1,5 @@
-import os
-import jinja2
-import webapp2
-import cgi
+from handler import *
 from signupValidation import *
-
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-                               autoescape = False)
 
 '''
 In order to be graded correctly for this homework, there are a few things to keep in mind.
@@ -38,22 +31,18 @@ More information on using regular expressions in Python can be found here:
     http://docs.python.org/library/re.html
 '''
 
-class Signup(webapp2.RequestHandler):
-    def write_form(self, username="", email="", username_error="",
-                   password_error="", verify_error="", email_error=""):
-        t_values = {
-            "username": cgi.escape(username),
-            "email": cgi.escape(email),
-            "username_error": username_error,
-            "password_error": password_error,
-            "verify_error": verify_error,
-            "email_error": email_error
-        }
-        t = jinja_env.get_template('signup.html')
-        self.response.write(t.render(t_values))
+class Signup(Handler):
+    def render_signup(self, username = "", email = "", username_error = "",
+                   password_error = "", verify_error = "", email_error = ""):
+        self.render("signup.html", username = username,
+                                   email = email,
+                                   username_error = username_error,
+                                   password_error = password_error,
+                                   verify_error = verify_error,
+                                   email_error = email_error)
 
     def get(self):
-        self.write_form()
+        self.render_signup()
 
     def post(self):
         have_error = False
@@ -83,19 +72,16 @@ class Signup(webapp2.RequestHandler):
             have_error = True
 
         if have_error:
-            self.write_form(username, email, username_error,
-                             password_error, verify_error, email_error)
+            self.render_signup(username, email, username_error,
+                               password_error, verify_error, email_error)
         else:
-            self.redirect('/unit2/welcome?username=%s' % username)
+            self.redirect('/welcome?username=%s' % username)
 
-class Welcome(webapp2.RequestHandler):
+class Welcome(Handler):
     def get(self):
         username = self.request.get("username")
         if valid_username(username):
-            t_values = {
-                "username": cgi.escape(username)
-            }
-            t = jinja_env.get_template('welcome.html')
-            self.response.write(t.render(t_values))
+            self.render("welcome.html", username = username)
         else:
-            self.redirect("/unit2/signup")
+            self.redirect("/signup")
+        

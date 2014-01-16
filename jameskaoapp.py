@@ -2,11 +2,19 @@ from main import *
 from birthday import *
 from rot13 import *
 from signup import *
+from asciichan import *
+from blog import *
+from newpost import *
 
-application = webapp2.WSGIApplication([("/", Main),
-                                       ("/unit2/birthday", Birthday),
-                                       ("/unit2/thanks", Thanks),
-                                       ("/unit2/rot13", Rot13),
-                                       ("/unit2/signup", Signup),
-                                       ("/unit2/welcome", Welcome)],
-                                       debug=True)
+app = webapp2.WSGIApplication([
+	("/", Main),
+    ("/birthday", Birthday),
+    ("/thanks", Thanks),
+    ("/rot13", Rot13),
+    ("/signup", Signup),
+    ("/welcome", Welcome),
+    ("/asciichan", AsciiChan),
+    ("/blog", Blog),
+    ("/blog/newpost", NewPost),
+    ("/blog/(\d+)", Permalink)
+	], debug=True)

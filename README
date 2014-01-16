@@ -1,18 +1,25 @@
 James Kao's collection of web apps for Udacity's CS253: Web Development Course
 
 ## Problem Set 1
-This is a basic web app that says "Hello, Udacity!"
-View this app at http://www.thekao.com
+This is a basic web app that says "Hello, World!"
+View this app at http://www.thekao.com/
 
 ## Unit 2
 This is a web app that checks for a valid birthday and redirects to a thanks page if valid.
-View this app at http://www.thekao.com/unit2/birthday
+View this app at http://www.thekao.com/birthday
 
 ## Problem Set 2a
 This is a web app that retrieves text and POSTs back to the form with the text encoded with ROT13.
-View this app at http://www.thekao.com/unit2/rot13
+View this app at http://www.thekao.com/rot13
 
 ## Problem Set 2b
-This is a signup page that ensures valid username, password, verify password, and email fields are entered.
-View this app at http://www.thekao.com/unit2/signup
+This is a signup page that ensures valid username, password, verify password, and email (optional) fields are entered.
+View this app at http://www.thekao.com/signup
 
+## Unit 3
+This is a blog of ascii art.
+View this app at http://www.thekao.com/asciichan
+
+## Problem Set 3
+This is a blog.
+Wiew this app at http://www.thekao.com/blog
