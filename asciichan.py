@@ -1,5 +1,5 @@
 from handler import *
-from art import Art
+from art import *
 
 # This is a blog of ascii art
 

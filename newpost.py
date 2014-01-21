@@ -5,9 +5,15 @@ from post import *
 
 class NewPost(Handler):
     def get(self):
-        self.render('newpost.html')
+        if self.user:
+            self.render("newpost.html")
+        else:
+            self.redirect("/login")
 
     def post(self):
+        if not self.user:
+            self.redirect('/blog')
+
         subject = self.request.get('subject')
         content = self.request.get('content')
 

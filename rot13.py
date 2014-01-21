@@ -19,7 +19,6 @@ your output!
 """
 
 class Rot13(Handler):
-
     def get(self):
         self.render('rot13-form.html')
 

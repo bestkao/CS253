@@ -1,5 +1,7 @@
 from handler import *
 
+from google.appengine.ext import db
+
 # Defines the value of the blog's parent
 
 def blog_key(name = 'default'):
