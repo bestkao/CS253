@@ -8,10 +8,10 @@ To get started, check out <http://www.thekao.com>!
 
  - [Birthday Validation](#birthday-validation)
  - [Rot 13 Encryption](#rot-13-encryption)
- - [/ascii/](#asciichan)
  - [Cookie](#cookie)
  - [Blog](#blog)
  - [New Post](#new-post)
+ - [/ascii/](#asciichan)
 
 ## Birthday Validation
 A web app that checks for a valid birthday and redirects to a thanks page if valid.
