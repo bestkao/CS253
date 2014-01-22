@@ -37,14 +37,17 @@ class Signup(Handler):
 
     def post(self):
         have_error = False
+        # Retrieve data entered in the text fields
         self.username = self.request.get('username')
         self.password = self.request.get('password')
         self.verify = self.request.get('verify')
         self.email = self.request.get('email')
         
+        # Dictionary of parameters to re-render if the signup was invalid
         params = dict(username = self.username,
                       email = self.email)
 
+        # Check every field for valid data
         if not valid_username(self.username):
             params['error_username'] = "That's not a valid username."
             have_error = True

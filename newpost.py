@@ -6,9 +6,9 @@ from post import *
 class NewPost(Handler):
     def get(self):
         if self.user:
-            self.render("newpost.html")
+            self.render('newpost.html')
         else:
-            self.redirect("/login")
+            self.redirect('/login')
 
     def post(self):
         if not self.user:

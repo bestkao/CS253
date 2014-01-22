@@ -26,6 +26,7 @@ class Rot13(Handler):
         rot13 = ''
         text = self.request.get('text')
         if text:
+        	# Python's built-in function to encode w/rot13
             rot13 = text.encode('rot13')
 
         self.render('rot13-form.html', text = rot13)

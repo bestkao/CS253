@@ -7,7 +7,7 @@ from google.appengine.ext import db
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
-# Defines the properties of the datastore object for posts
+# Defines the properties of the datastore entity for posts
 
 class Post(db.Model):
     subject = db.StringProperty(required = True)
@@ -16,7 +16,6 @@ class Post(db.Model):
     last_modified = db.DateTimeProperty(auto_now = True)
 
     # Renders the blog entry in html, while substituting newlines with line breaks
-
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str('post.html', p = self)
