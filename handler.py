@@ -3,6 +3,7 @@ import jinja2
 import hmac
 import webapp2
 from user import *
+import json
 
 # Sets template directory to 'templates'
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -41,6 +42,11 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
 
+    def render_json(self, d):
+        json_txt = json.dumps(d)
+        self.response.headers['Content-Type'] = 'application/json; charset = UTF-8'
+        self.write(json_txt)
+
     # Sets the cookie with a given name and value
     def set_secure_cookie(self, name, val):
         cookie_val = make_secure_val(val)
@@ -66,6 +72,11 @@ class Handler(webapp2.RequestHandler):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         uid = self.read_secure_cookie('user_id') # Check for the user's cookie value
         self.user = uid and User.by_id(int(uid)) # Store in the user object if it exists
+
+        if self.request.url.endswith('.json'):
+            self.format = 'json'
+        else:
+            self.format = 'html'
 
 # Handles whitespace
 def render_post(response, post):

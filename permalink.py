@@ -12,5 +12,7 @@ class Permalink(Handler):
         if not post:
             self.error(404)
             return
-
-        self.render('permalink.html', post = post)
+        if self.format == 'html':
+            self.render('permalink.html', post = post)
+        else:
+        	self.render_json(post.as_dict())

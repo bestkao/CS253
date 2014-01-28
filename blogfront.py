@@ -23,9 +23,9 @@ path to your blog's front page. For example, our example app is running at
 http://cs253-homework-sean.appspot.com/blog, but if we instead only entered
 http://udacity-cs253.appspot.com/ then the grading script would not work.
 Don't forget to escape your output!
-'''
 
-'''
+
+
 A couple helpful links for HW 3:
 I realized while recording the solution to HW 3 a few things that I didn't cover
 in the lecture that will be helpful to know. After submitting a blog post, I ask
@@ -46,8 +46,11 @@ Hope this helps!
 
 class BlogFront(Handler):
     def get(self):
-    	# Datastore method to retrieve posts
+    	  # Datastore method to retrieve posts
         posts = Post.all().order('-created')
         # GQL method to retrieve posts
         # posts = db.GqlQuery('select * from Post order by created desc limit 10')
-        self.render('front.html', posts = posts)
+        if self.format == 'html':
+            self.render('front.html', posts = posts)
+        elif self.format == 'json':
+            return self.render_json([p.as_dict() for p in posts])
