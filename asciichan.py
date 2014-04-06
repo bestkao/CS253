@@ -3,6 +3,7 @@ import urllib2
 from xml.dom import minidom
 from handler import *
 from art import *
+import logging
 
 from google.appengine.ext import db
 
@@ -14,7 +15,9 @@ Add a map to the front page:
     Google Maps (static map)
 '''
 
-art_key = db.Key.from_path('ASCIIChan', 'arts')
+
+
+art_key = db.Key.from_path('arts', 'default')
 
 def console(s):
     sys.stderr.write('%s\n' %s)
@@ -50,20 +53,33 @@ def gmaps_img(points):
                        for p in points)
     return GMAPS_URL + markers
 
+CACHE = {}
+def top_arts():
+    key = 'top'
+    if key in CACHE:
+        arts = CACHE[key]
+    else:
+        logging.error("DB QUERY")
+
+        # GQL query for a list of 10 most recent ascii art entities
+        arts = db.GqlQuery('SELECT * '
+                           'FROM Art '
+#                           'WHERE ANCESTOR IS :1 '
+                           'ORDER BY created DESC '
+                           'LIMIT 10')
+#                           art_key)
+        
+    # Create a list on the cursor arts to
+    # prevent the running of multiple queries
+    arts = list(arts)
+    return arts
+
 # This is a blog of ascii art
 
 class AsciiChan(Handler):
     # Render the 10 most recent ascii art posts
     def render_ascii(self, title = '', art = '', error = ''):
-        # GQL query for a list of 10 most recent ascii art entities
-        arts = db.GqlQuery('SELECT * '
-                           'FROM Art '
-                           'ORDER BY created DESC '
-                           'LIMIT 10')
-        
-        # Create a list on the cursor arts to
-        # prevent the running of multiple queries
-        arts = list(arts)
+        arts = top_arts()
 
         # Find which arts have coordinates
         points = filter(None, (a.coords for a in arts))
