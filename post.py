@@ -10,7 +10,7 @@ def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
 def top_posts(update = False):
-    key = 'top'
+    key = 'top_post'
     posts = memcache.get(key)
     if not posts or update:
         logging.error("DB QUERY")
