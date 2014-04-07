@@ -18,6 +18,7 @@ from register import Register
 from login import Login
 from logout import Logout
 from welcome import Welcome
+from flush import Flush
 
 app = webapp2.WSGIApplication([('/', Index),
     # Lesson Projects
@@ -33,5 +34,6 @@ app = webapp2.WSGIApplication([('/', Index),
     ('/signup', Register),
     ('/login', Login),
     ('/logout', Logout),
-    ('/welcome', Welcome)
+    ('/welcome', Welcome),
+    ('/flush', Flush)
 ], debug = True)

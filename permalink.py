@@ -1,6 +1,5 @@
 from handler import *
 from post import *
-import time
 
 # A permalink page for particular posts
 
