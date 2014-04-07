@@ -16,6 +16,6 @@ class Permalink(Handler):
             self.error(404)
             return
         if self.format == 'html':
-            self.render('permalink.html', post = post, last_queried = last_queried)
+            self.render('permalink.html', post = post) #, last_queried = last_queried)
         else:
         	self.render_json(post.as_dict())

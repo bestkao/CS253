@@ -8,6 +8,8 @@
   <div class = 'last-queried'>
     {% if last_queried %}
       Queried {{last_queried}} seconds ago
+    {% else %}
+      Queried 0 seconds ago
     {% endif %}
   </div>
 {% endblock %}
