@@ -103,3 +103,15 @@ input[type=submit] {
 .post-content {
     margin-top: 5px;
 }
+
+.default-link {
+    color: gray;
+    text-decoration: none;
+}
+
+.last-queried-area {
+    font-size: 13px;
+    color: gray;
+    position: absolute;
+    right: 10px;
+}

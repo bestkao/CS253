@@ -27,8 +27,8 @@ IP_URL_BEG = 'http://api.hostip.info/?ip='
 IP_URL_END = '&position=true'
 # Makes a request to hostip.info using a given ip address
 def get_coords(ip):
-    ip = '4.2.2.2'
-    ip = '23.24.209.141'
+    # ip = '4.2.2.2'
+    # ip = '23.24.209.141'
     url = IP_URL_BEG + ip + IP_URL_END # Sets the url using the given ip address
     content = None
     try:

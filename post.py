@@ -1,11 +1,34 @@
 from handler import *
+import logging
 
+from google.appengine.api import memcache
 from google.appengine.ext import db
 
 # Defines the value of the blog's parent
 
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
+
+def top_posts(update = False):
+    key = 'top'
+    posts = memcache.get(key)
+    if not posts or update:
+        logging.error("DB QUERY")
+
+        # GQL query for a list of 10 most recent ascii art entities
+        posts = db.GqlQuery('SELECT * '
+                           'FROM Post '
+#                           'WHERE ANCESTOR IS :1 '
+                           'ORDER BY created DESC '
+                           'LIMIT 10')
+#                           post_key)
+        
+        # Create a list on the cursor posts to
+        # prevent the running of multiple queries
+        posts = list(posts)
+        memcache.set(key, posts)
+    
+    return posts
 
 # Defines the properties of the datastore entity for posts
 

@@ -1,5 +1,5 @@
 from handler import *
-from post import Post
+from post import *
 
 '''
 Build a blog
@@ -47,7 +47,7 @@ Hope this helps!
 class BlogFront(Handler):
     def get(self):
     	  # Datastore method to retrieve posts
-        posts = Post.all().order('-created')
+        posts = top_posts() # Post.all().order('-created')
         # GQL method to retrieve posts
         # posts = db.GqlQuery('select * from Post order by created desc limit 10')
         if self.format == 'html':

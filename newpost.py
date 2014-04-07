@@ -20,6 +20,11 @@ class NewPost(Handler):
         if subject and content:
             p = Post(parent = blog_key(), subject = subject, content = content)
             p.put()
+            
+            # rerun the query and update the cache
+            top_posts(True)
+            time.sleep(1)
+
             self.redirect('/blog/%d' % p.key().id())
         else:
             error = 'subject and content, please!'
