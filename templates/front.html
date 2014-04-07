@@ -6,5 +6,12 @@
     {{ p.render() | safe }}
     <br><br>
   {% endfor %}
-
+  
+  <br>
+  
+  <div class = 'last-queried'>
+    {% if last_queried %}
+      Queried {{last_queried}} seconds ago
+    {% endif %}
+  </div>
 {% endblock %}

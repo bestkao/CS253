@@ -1,6 +1,5 @@
 from handler import *
 from post import *
-import time
 
 # A form to submit new posts
 
@@ -24,7 +23,6 @@ class NewPost(Handler):
             
             # rerun the query and update the cache
             top_posts(True)
-            time.sleep(1)
 
             self.redirect('/blog/%d' % p.key().id())
         else:

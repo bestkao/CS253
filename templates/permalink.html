@@ -2,4 +2,12 @@
 
 {% block content %}
   {{post.render() | safe}}
+
+  <br>
+  
+  <div class = 'last-queried'>
+    {% if last_queried %}
+      Queried {{last_queried}} seconds ago
+    {% endif %}
+  </div>
 {% endblock %}
