@@ -7,12 +7,13 @@ import time
 class BlogFront(Handler):
     def get(self):
         # Retrieve posts from memcache
-        posts = top_posts() # front = True)
+        posts = top_posts()
         # Datastore method to retrieve posts:
         # Post.all().order('-created')
         # GQL method to retrieve posts:
         # posts = db.GqlQuery('select * from Post order by created desc limit 10')
         
+        # Update time of last query
         last_queried = int(time.time() - memcache.get('START_TIME'))
         
         if self.format == 'html':

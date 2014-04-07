@@ -12,7 +12,7 @@ def blog_key(name = 'default'):
 
 # Retrieve posts from memcache
 
-def top_posts(update = False): # , front = False):
+def top_posts(update = False):
     key = 'top_post'
     posts = memcache.get(key)
     if not posts or update:
@@ -30,9 +30,8 @@ def top_posts(update = False): # , front = False):
         # prevent the running of multiple queries
         posts = list(posts)
         memcache.set(key, posts)
-#       if front:
-#           memcache.set('START_TIME_FRONT', time.time())
-#       else:
+
+        # Set time of query on front page
         memcache.set('START_TIME', time.time())
     
     return posts
