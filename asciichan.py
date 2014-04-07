@@ -5,6 +5,7 @@ from handler import *
 from art import *
 import logging
 
+from google.appengine.api import memcache
 from google.appengine.ext import db
 
 '''
@@ -53,12 +54,10 @@ def gmaps_img(points):
                        for p in points)
     return GMAPS_URL + markers
 
-CACHE = {}
 def top_arts(update = False):
     key = 'top'
-    if not update and key in CACHE:
-        arts = CACHE[key]
-    else:
+    arts = memcache.get(key)
+    if not arts or update:
         logging.error("DB QUERY")
 
         # GQL query for a list of 10 most recent ascii art entities
@@ -72,7 +71,7 @@ def top_arts(update = False):
         # Create a list on the cursor arts to
         # prevent the running of multiple queries
         arts = list(arts)
-        CACHE[key] = arts
+        memcache.set(key, arts)
     
     return arts
 
