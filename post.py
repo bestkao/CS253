@@ -1,5 +1,6 @@
 from handler import *
 import logging
+import time
 
 from google.appengine.api import memcache
 from google.appengine.ext import db
@@ -8,6 +9,8 @@ from google.appengine.ext import db
 
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
+
+# Retrieve posts from memcache
 
 def top_posts(update = False):
     key = 'top_post'
@@ -27,6 +30,9 @@ def top_posts(update = False):
         # prevent the running of multiple queries
         posts = list(posts)
         memcache.set(key, posts)
+
+        # Timestamp of the last query
+        START_TIME = time.time()
     
     return posts
 
