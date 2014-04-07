@@ -1,5 +1,6 @@
 from handler import *
 from post import *
+import time
 
 # A form to submit new posts
 
