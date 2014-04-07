@@ -69,9 +69,11 @@ def top_arts():
                            'LIMIT 10')
 #                           art_key)
         
-    # Create a list on the cursor arts to
-    # prevent the running of multiple queries
-    arts = list(arts)
+        # Create a list on the cursor arts to
+        # prevent the running of multiple queries
+        arts = list(arts)
+        CACHE[key] = arts
+    
     return arts
 
 # This is a blog of ascii art
@@ -126,7 +128,10 @@ class AsciiChan(Handler):
 
             # stores the new instance into the database
             a.put()
-
+            # clear the cache
+            CACHE.clear() # del CACHE['top']
+            time.sleep(1)
+            
             self.redirect('/asciichan')
         else:
             error = 'We need both a title and some artwork!'
