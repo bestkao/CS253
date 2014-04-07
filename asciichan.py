@@ -54,9 +54,9 @@ def gmaps_img(points):
     return GMAPS_URL + markers
 
 CACHE = {}
-def top_arts():
+def top_arts(update = False):
     key = 'top'
-    if key in CACHE:
+    if not update and key in CACHE:
         arts = CACHE[key]
     else:
         logging.error("DB QUERY")
@@ -128,8 +128,8 @@ class AsciiChan(Handler):
 
             # stores the new instance into the database
             a.put()
-            # clear the cache
-            CACHE.clear() # del CACHE['top']
+            # rerun the query and update the cache
+            top_arts(True)
             time.sleep(1)
             
             self.redirect('/asciichan')
