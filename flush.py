@@ -5,7 +5,7 @@ from post import *
 
 class Flush(Handler):
     def get(self):
-    	last_queried = 0
-    	last_queried_permalink = 0
-    	memcache.flush_all()
+        last_queried = 0
+        last_queried_permalink = 0
+        memcache.flush_all()
         self.redirect('/blog')

@@ -22,6 +22,7 @@ class NewPost(Handler):
             p.put()
             
             # rerun the query and update the cache
+            time.sleep(1)
             top_posts(True)
 
             self.redirect('/blog/%d' % p.key().id())
