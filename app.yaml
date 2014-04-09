@@ -13,7 +13,7 @@ handlers:
   upload: static/images/favicon\.ico
 
 - url: /.*
-  script: blog.app
+  script: thekao.app
 
 libraries:
 - name: jinja2
