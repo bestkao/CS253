@@ -16,6 +16,6 @@ class Blog(Handler):
         last_queried = int(time.time() - memcache.get('START_TIME'))
         
         if self.format == 'html':
-            self.render('front.html', posts = posts, last_queried = last_queried)
+            self.render('blog.html', posts = posts, last_queried = last_queried)
         elif self.format == 'json':
             return self.render_json([p.as_dict() for p in posts])

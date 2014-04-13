@@ -4,4 +4,4 @@ from handler import *
 
 class Wiki(Handler):
     def get(self):
-        self.redirect('/blog')
+        self.render('wiki.html')

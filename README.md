@@ -1,6 +1,6 @@
 # [The Kao](http://www.thekao.com)
 
-James Kao's collection of web apps for Udacity's CS253: Web Development Course.
+James Kao's collection of web apps.
 
 To get started, check out <http://www.thekao.com>!
 
