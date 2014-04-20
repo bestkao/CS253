@@ -6,18 +6,18 @@
 # the name of the month with the first letter 
 # capitalized.
 
-months = ['January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December']
+months = ['January', '1', '01'
+          'February', '2', '02'
+          'March', '3', '03'
+          'April', '4', '04'
+          'May', '5', '05'
+          'June', '6', '06'
+          'July', '7', '07'
+          'August', '8', '08'
+          'September', '9', '09'
+          'October', '10', '10'
+          'November', '11', '11'
+          'December' '12']
           
 def valid_month(month):
     if month:
