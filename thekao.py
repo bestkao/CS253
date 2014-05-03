@@ -3,6 +3,9 @@ import webapp2
 # Main Page
 from index import Index
 
+# Projects Page
+from projects import Projects
+
 # Lesson Projects
 from birthday import Birthday
 from thanks import Thanks
@@ -25,6 +28,7 @@ from wiki import Wiki
 
 app = webapp2.WSGIApplication([
     ('/', Index),
+    ('/projects', Projects),
     # Lesson Projects
     ('/birthday', Birthday),
     ('/thanks', Thanks),

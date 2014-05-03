@@ -8,9 +8,22 @@ handlers:
 - url: /static
   static_dir: static
 
+- url: /css
+  static_dir: css
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /js
+  static_dir: js
+
 - url: /favicon\.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon\.ico
+
+- url: /resume\.pdf
+  static_files: static/resume.pdf
+  upload: static/resume\.pdf
 
 - url: /.*
   script: thekao.app

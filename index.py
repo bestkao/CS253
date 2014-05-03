@@ -5,4 +5,4 @@ from handler import *
 class Index(Handler):
 
     def get(self):
-        self.render("index.html", text = "James's Web Apps")
+        self.render("index.html")
