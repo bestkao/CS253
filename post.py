@@ -25,7 +25,7 @@ def top_posts(update = False):
                            'ORDER BY created DESC '
                            'LIMIT 10')
 #                           post_key)
-        
+
         # Create a list on the cursor posts to
         # prevent the running of multiple queries
         posts = list(posts)
@@ -33,7 +33,7 @@ def top_posts(update = False):
 
         # Set time of query on front page
         memcache.set('START_TIME', time.time())
-    
+
     return posts
 
 # Defines the properties of the datastore entity for posts

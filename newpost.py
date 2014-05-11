@@ -20,7 +20,7 @@ class NewPost(Handler):
         if subject and content:
             p = Post(parent = blog_key(), subject = subject, content = content)
             p.put()
-            
+
             # rerun the query and update the cache
             time.sleep(1)
             top_posts(True)

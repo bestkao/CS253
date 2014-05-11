@@ -68,12 +68,12 @@ def top_arts(update = False):
                            'ORDER BY created DESC '
                            'LIMIT 10')
 #                           art_key)
-        
+
         # Create a list on the cursor arts to
         # prevent the running of multiple queries
         arts = list(arts)
         memcache.set(key, arts)
-    
+
     return arts
 
 # This is a blog of ascii art
@@ -107,7 +107,7 @@ class AsciiChan(Handler):
         # Confirm our IP address
         #   remote_addr is the requesting ip address
         # self.write(self.request.remote_addr)
-        
+
         # Confirm get_coords() retrieves our coordinates
         #   repr() encloses its parameter with quotes
         # self.write(repr(get_coords(self.request.remote_addr)))
@@ -116,7 +116,7 @@ class AsciiChan(Handler):
     def post(self):
         title = self.request.get('title')
         art = self.request.get('art')
-        
+
         if title and art:
             # Make a new instance of Art
             a = Art(parent = art_key, title = title, art = art)
@@ -131,7 +131,7 @@ class AsciiChan(Handler):
             # rerun the query and update the cache
             top_arts(True)
             time.sleep(1)
-            
+
             self.redirect('/asciichan')
         else:
             error = 'We need both a title and some artwork!'
