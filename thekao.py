@@ -26,6 +26,9 @@ from flush import Flush
 # Wiki
 from wiki import Wiki
 
+# Bootstrap Test
+from bootstrap import Bootstrap
+
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/projects', Projects),
@@ -44,5 +47,6 @@ app = webapp2.WSGIApplication([
     ('/logout', Logout),
     ('/welcome', Welcome),
     ('/flush', Flush),
-    ('/wiki', Wiki)
+    ('/wiki', Wiki),
+    ('/bootstrap', Bootstrap)
     ], debug = True)
