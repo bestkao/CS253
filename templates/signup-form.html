@@ -1,70 +1,43 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-  <head>
-    <title>Signup Page</title>
-    <style type = 'text/css'>
-      .label {text-align: right}
-      .error {color: red}
-    </style>
+{% block headings %}
 
-  </head>
+  <meta name="description" content="Signup">
 
-  <body>
-    <h2>Signup</h2>
-    <form method = 'post'>
-      <table>
-        <tr>
-          <td class = 'label'>
-            Username
-          </td>
-          <td>
-            <input type = 'text' name = 'username' value = '{{username}}'>
-          </td>
-          <td class = 'error'>
-            {{error_username}}
-          </td>
-        </tr>
+  <title>Signup</title>
 
-        <tr>
-          <td class = 'label'>
-            Password
-          </td>
-          <td>
-            <input type = 'password' name = 'password' value = ''>
-          </td>
-          <td class = 'error'>
-            {{error_password}}
-          </td>
-        </tr>
+  <!-- Custom styles for this template -->
+  <link href="/css/login.css" rel="stylesheet">
 
-        <tr>
-          <td class = 'label'>
-            Verify Password
-          </td>
-          <td>
-            <input type = 'password' name = 'verify' value = ''>
-          </td>
-          <td class = 'error'>
-            {{error_verify}}
-          </td>
-        </tr>
+{% endblock %}
 
-        <tr>
-          <td class = 'label'>
-            Email (optional)
-          </td>
-          <td>
-            <input type = 'text' name = 'email' value = '{{email}}'>
-          </td>
-          <td class = 'error'>
-            {{error_email}}
-          </td>
-        </tr>
-      </table>
+{% block content %}
 
-      <input type = 'submit'>
+  <div class="container">
+
+    <form class="form-signin" role="form" method="post">
+
+      <h2 class="form-signin-heading">Signup</h2>
+      <input type="text" name="username" class="form-control" placeholder="Username" value = '{{username}}' required autofocus>
+      <input type="password" name="password" class="form-control" placeholder="Password" value = '' required>
+      <input type="password" name="verify" class="form-control" placeholder="Confirm Password" value = '' required>
+      <input type="text" name="email" class="form-control" placeholder="Email" value = ''>
+
+      <!--label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label-->
+
+      <div class = 'error'>
+        {{error_username}}
+        {{error_password}}
+        {{error_verify}}
+        {{error_email}}
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
     </form>
-  </body>
 
-</html>
+   </div> <!-- /container -->
+
+{% endblock %}

@@ -1,44 +1,33 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-  <head>
-    <title>Login</title>
-    <style type = 'text/css'>
-      .label {text-align: right}
-      .error {color: red}
-    </style>
+{% block headings %}
 
-  </head>
+  <meta name="description" content="Login">
 
-  <body>
-    <h2>Login</h2>
-    <form method = 'post'>
-      <table>
-        <tr>
-          <td class = 'label'>
-            Username
-          </td>
-          <td>
-            <input type = 'text' name = 'username' value = '{{username}}'>
-          </td>
-        </tr>
+  <title>Login</title>
 
-        <tr>
-          <td class = 'label'>
-            Password
-          </td>
-          <td>
-            <input type = 'password' name = 'password' value = ''>
-          </td>
-        </tr>
-      </table>
+  <!-- Custom styles for this template -->
+  <link href="/css/login.css" rel="stylesheet">
 
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+
+    <form class="form-signin" role="form" method="post">
+      <h2 class="form-signin-heading">Log in</h2>
+      <input type="text" name="username" class="form-control" placeholder="Username" value = '{{username}}' required autofocus>
+      <input type="password" name="password" class="form-control" placeholder="Password" value = '' required>
+      <!--label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label-->
       <div class = 'error'>
         {{error}}
       </div>
-
-      <input type = 'submit'>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
-  </body>
 
-</html>
+   </div> <!-- /container -->
+
+{% endblock %}

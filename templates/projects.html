@@ -1,53 +1,80 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-<head>
-  <link type = 'text/css' rel = 'stylesheet' href = '/static/main.css' />
+{% block headings %}
+
+  <meta name="description" content="Projects">
 
   <title>Projects</title>
-</head>
 
-<body>
-  <a href = '/' class = 'main-title'>
-    Projects
-  </a>
+  <!-- Custom styles for this template -->
+  <link href="/css/cover.css" rel="stylesheet">
 
-  <h2>Blog:</h2>
-  <ul>
-    <li>
-      <a class = 'default-link' href = '/blog'>Front Page</a>
-      My blog featuring user signup, login, logout, permalink, and new post pages. Outputs the blog and individual posts to JSON when '.json' is appended to the url.
-    </li>
-  </ul>
+{% endblock %}
 
-  <h2>Wiki:</h2>
-  <ul>
-    <li>
-      <a class = 'default-link' href = '/wiki'>Wiki</a>
-      Under construction
-    </li>
-  </ul>
+{% block content %}
 
-  <h2>Mini Projects:</h2>
-  <ul>
-    <li>
-      <a class = 'default-link' href = '/birthday'>Birthday Validation</a>
-      Checks for a valid birthday and redirects to a thanks page if valid.
-    </li>
-    <li>
-      <a class = 'default-link' href = '/rot13'>ROT13 Encyption</a>
-      Retrieves text and POSTs back to the form with the text encoded with ROT13.
-    </li>
-    <li>
-      <a class = 'default-link' href = '/cookie'>Cookie</a>
-      Keeps track of the how many times you've visited the site.
-    <li>
-      <a class = 'default-link' href = '/asciichan'>/ascii/</a>
-      A miniblog of /ascii/ art featuring geolocation mapping to posts.
-    </li>
-    </li>
-  </ul>
-  
-</body>
+  <div class="site-wrapper">
 
-</html>
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand"><a href="/">James Kao</a></h3>
+            <ul class="nav masthead-nav">
+              <li><a href="#">About</a></li>
+              <li><a href="/projects">Projects</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/wiki">Wiki</a></li>
+              <li><a href="/resume.pdf">Resume</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="inner_projects">
+          <p class="lead">Blog</p>
+          <ul>
+            <li>
+              <a class = 'default-link' href = '/blog'>Front Page</a>
+              My blog featuring user signup, login, logout, permalink, and new post pages. Outputs the blog and individual posts to JSON when '.json' is appended to the url.
+            </li>
+          </ul>
+
+          <p class="lead">Wiki</p>
+          <ul>
+            <li>
+              <a class = 'default-link' href = '/wiki'>Wiki</a>
+              Under construction
+            </li>
+          </ul>
+
+          <p class="lead">Mini Projects</p>
+          <ul>
+            <li>
+              <a class = 'default-link' href = '/birthday'>Birthday Validation</a>
+              Checks for a valid birthday and redirects to a thanks page if valid.
+            </li>
+            <li>
+              <a class = 'default-link' href = '/rot13'>ROT13 Encyption</a>
+              Retrieves text and POSTs back to the form with the text encoded with ROT13.
+            </li>
+            <li>
+              <a class = 'default-link' href = '/cookie'>Cookie</a>
+              Keeps track of the how many times you've visited the site.
+            <li>
+              <a class = 'default-link' href = '/asciichan'>/ascii/</a>
+              A miniblog of /ascii/ art featuring geolocation mapping to posts.
+            </li>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
